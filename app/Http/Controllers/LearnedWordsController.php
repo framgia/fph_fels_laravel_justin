@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class Words_LearnedController extends Controller
+class LearnedWordsController extends Controller
 {
     /**
      * Display a listing of the resource.
