@@ -11,8 +11,8 @@
                 </div>   
                 <div class="col-md-8">     
                     <h4>{{ $user->name }}</h4>
-                    <a href=#>Learned 20 words</a><br/>
-                    <a href="#">Learened 5 lessons</a>
+                    <a href=#>Learned {{ $learnedWordsCount }} words</a><br/>
+                    <a href="#">Learened {{ $lessonsCount }} lessons</a>
                 </div>
             </div>
 
