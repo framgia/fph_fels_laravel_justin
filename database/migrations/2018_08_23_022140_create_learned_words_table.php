@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWordLearnedTable extends Migration
+class CreateLearnedWordsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateWordLearnedTable extends Migration
      */
     public function up()
     {
-        Schema::create('words_learned', function (Blueprint $table) {
+        Schema::create('learned_words', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('lesson_id');
             $table->integer('item_id');
@@ -29,6 +29,6 @@ class CreateWordLearnedTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('words_learned');
+        Schema::dropIfExists('learned_words');
     }
 }
