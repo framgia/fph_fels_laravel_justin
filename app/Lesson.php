@@ -22,8 +22,4 @@ class Lesson extends Model
         return count($this->learnedWords);
     }
 
-    public function getWordsLearnedCount() 
-    {
-        return $this->learnedWords()->count();
-    }
 }

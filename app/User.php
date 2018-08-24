@@ -48,6 +48,6 @@ class User extends Authenticatable
         foreach($this->lessons as $lesson) {
             $totalLearnedWordsCount += $lesson->learnedWordsCount();
         }
-         return $totalLearnedWordsCount;
+        return $totalLearnedWordsCount;
     }
 }
