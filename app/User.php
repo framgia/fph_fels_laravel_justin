@@ -80,4 +80,14 @@ class User extends Authenticatable
 
         return $activities;
     }
+
+    public function isFollowing($id)
+    {
+        $returnValue = false;
+        if($this->connections()->where('following_id', $id)->get()->count() > 0) {
+            $returnValue = true;
+        }
+        
+        return $returnValue;
+    }
 }

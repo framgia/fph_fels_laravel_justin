@@ -23,9 +23,17 @@
 
              @if(Auth::user()->id != $user->id)
                 <div class="row text-center">
-                    <form action="/profile" method="POST">
-                        <input class="follow-button" type="submit" class="btn btn-sm" value="FOLLOW">
-                    </form>
+                    @if(Auth::user()->isFollowing($user->id))
+                        <form action="/unfollow/{{$user->id}}" method="POST">
+                            {{ csrf_field() }}
+                            <input class="unfollow-button" type="submit" class="btn btn-sm" value="UNFOLLOW">
+                        </form>
+                    @else
+                        <form action="/follow/{{$user->id}}" method="POST">
+                            {{ csrf_field() }}
+                            <input class="follow-button" type="submit" class="btn btn-sm" value="FOLLOW">
+                        </form>
+                    @endif
                 </div>
             @endif
              <div class="row text-center">
