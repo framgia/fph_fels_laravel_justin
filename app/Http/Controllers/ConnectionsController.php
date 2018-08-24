@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Connection;
+use App\Activity;
+use Auth;
 
 class ConnectionsController extends Controller
 {
@@ -21,9 +24,34 @@ class ConnectionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function followUser($id)
     {
         //
+        $connection = new Connection;
+        $connection->user_id = Auth::user()->id;
+        $connection->following_id = $id;
+        $connection->save();
+
+        $activity = new Activity;
+        $activity->user_id = $connection->user_id;
+        $activity->type = 0;
+        $activity->reference_id = $connection->id;
+        $activity->save();
+
+        return redirect('profile/'.$id);
+    }
+
+    public function unfollowUser($id)
+    {
+        //
+        $connection = Connection::where('user_id', Auth::user()->id)->where('following_id', $id)->first();
+        $activities = Activity::where('user_id', Auth::user()->id)->where('type', 0)->where('reference_id', $connection->id)->first();
+
+
+        $connection->delete();
+        $activities->delete();
+
+        return redirect('profile/'.$id);
     }
 
     /**
