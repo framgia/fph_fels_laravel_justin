@@ -34,37 +34,32 @@
          <div class="col-md-7 activities">
             <h4 class="activities-header">Activities</h4>
             <hr class="custom-hr">
-            <div class="row">
-                <div class="col-md-2">
-                    <img class="user-image-sm" src="/uploads/avatars/default.jpg">  
+            @foreach($activities as $activity)
+                <div class="row">
+                    <div class="col-md-2">
+                        <img class="activities-image" src="/uploads/avatars/default.jpg">  
+                    </div>
+                    <div class="col-md-10">
+                        <p class="activities-text">
+                            <a href="/profile/{{ $activity->user->id }}">
+                                {{ (strcmp($activity->user->name, Auth::user()->name)) ? $activity->user->name : 'You' }}
+                            </a> 
+                            @if($activity->type == 0)
+                                followed <a href="/profile/{{ App\User::find(App\Connection::find($activity->reference_id)->following_id)->id }}">{{ App\User::find(App\Connection::find($activity->reference_id)->following_id)->name }}</a>
+                            @else
+                                learned {{ App\Lesson::find($activity->reference_id)->correctLearnedWordsCount() }} of {{ count(App\Lesson::find($activity->reference_id)->learnedWords) }} words in <a href="#">{{ App\Category::find(App\Lesson::find($activity->reference_id)->category_id)->title }}</a>
+                            @endif
+
+
+
+                            <br/>{{ $activity->updated_at->diffForHumans() }}
+
+                        </p>
+                    </div>
                 </div>
-                <div class="col-md-10">
-                    <p class="activities-text"><a href="#">Jane</a> learned 20 of 20 words in <a href="#">Basic 500</a><br/>2 days ago</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <img class="user-image-sm" src="/uploads/avatars/default.jpg">  
-                </div>
-                <div class="col-md-10">
-                    <p class="activities-text"><a href="#">Jane</a> learned 20 of 20 words in <a href="#">Basic 500</a><br/>2 days ago</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <img class="user-image-sm" src="/uploads/avatars/default.jpg">  
-                </div>
-                <div class="col-md-10">
-                    <p class="activities-text"><a href="#">Jane</a> learned 20 of 20 words in <a href="#">Basic 500</a><br/>2 days ago</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
-                    <img class="user-image-sm" src="/uploads/avatars/default.jpg">  
-                </div>
-                <div class="col-md-10">
-                    <p class="activities-text"><a href="#">Jane</a> learned 20 of 20 words in <a href="#">Basic 500</a><br/>2 days ago</p>
-                </div>
+            @endforeach
+            <div class="text-center">
+                {{ $activities->links() }}
             </div>
         </div>
     </div>
