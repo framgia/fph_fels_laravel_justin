@@ -54,7 +54,9 @@ class UsersController extends Controller
     public function show()
     {
         //
-        return view('users.list');
+        $users = User::where('id', '!=', Auth::user()->id)->paginate(4);
+
+        return view('users.list', compact('users'));
     }
 
     /**
@@ -80,7 +82,8 @@ class UsersController extends Controller
         //
     }
 
-    public function profile($id) {
+    public function profile($id) 
+    {
         $user = User::find($id);
 
         $activities = $user->activities()->orderBy('updated_at', 'desc')->paginate(4);

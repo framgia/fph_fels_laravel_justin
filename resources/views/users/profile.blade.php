@@ -13,10 +13,10 @@
            </form> -->
             <div class="row">
                 <div class="col-md-4 col-md-offset-2 text-center">
-                    <p>{{$user->followersCount()}}<br/>followers</p>
+                    <p>{{$user->followersCount()}}<br/>Followers</p>
                 </div>
                 <div class="col-md-4 text-center">
-                    <p>{{$user->followingCount()}}<br/>following</p>
+                    <p>{{$user->followingCount()}}<br/>Following</p>
                 </div>
             </div>
 
@@ -45,7 +45,7 @@
             @foreach($activities as $activity)
                 <div class="row">
                     <div class="col-md-2">
-                        <img class="activities-image" src="/uploads/avatars/default.jpg">  
+                        <img class="activities-image" src="/uploads/avatars/{{ $activity->user->avatar }}">  
                     </div>
                     <div class="col-md-10">
                         <p class="activities-text">
