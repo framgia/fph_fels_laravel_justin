@@ -38,7 +38,7 @@ class ConnectionsController extends Controller
         $activity->reference_id = $connection->id;
         $activity->save();
 
-        return redirect('profile/'.$id);
+        return redirect()->back();
     }
 
     public function unfollowUser($id)
@@ -51,7 +51,7 @@ class ConnectionsController extends Controller
         $connection->delete();
         $activities->delete();
 
-        return redirect('profile/'.$id);
+        return redirect()->back();
     }
 
     /**
