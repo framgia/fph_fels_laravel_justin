@@ -41,4 +41,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Lesson::class);
     }
+
+    public function totalLearnedWordsCount()
+    {
+        $totalLearnedWordsCount = 0;
+        foreach($this->lessons as $lesson) {
+            $totalLearnedWordsCount += $lesson->learnedWordsCount();
+        }
+        return $totalLearnedWordsCount;
+    }
 }

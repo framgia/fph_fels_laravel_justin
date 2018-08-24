@@ -16,4 +16,10 @@ class Lesson extends Model
     {
         return $this->hasMany(LearnedWord::class);
     }
+
+    public function learnedWordsCount() 
+    {
+        return count($this->learnedWords);
+    }
+
 }

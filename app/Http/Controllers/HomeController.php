@@ -22,8 +22,11 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        return view('users.dashboard', array('user' => Auth::user()));
+        $user = Auth::user();
+        
+        return view('users.dashboard', compact('user'));
     }
 }
