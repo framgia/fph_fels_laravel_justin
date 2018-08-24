@@ -22,4 +22,15 @@ class Lesson extends Model
         return count($this->learnedWords);
     }
 
+    public function correctLearnedWordsCount() 
+    {
+    	$correctLearnedWordsCount = 0;
+    	foreach($this->learnedWords as $learnedWord) {
+    		if($learnedWord->isCorrect()) {
+    			$correctLearnedWordsCount++;
+    		}
+    	}
+
+    	return $correctLearnedWordsCount;
+    }
 }
