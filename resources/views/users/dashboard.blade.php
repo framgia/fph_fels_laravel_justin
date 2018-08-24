@@ -11,8 +11,8 @@
                 </div>   
                 <div class="col-md-8">     
                     <h4>{{ $user->name }}</h4>
-                    <a href=#>Learned {{ $user->totalLearnedWordsCount() }} words</a><br/>
-                    <a href="#">Learened {{ $user->lessons()->count() }} lessons</a>
+                    <a href=#>Learned {{ $user->totalLearnedWordsCount() }} Words</a><br/>
+                    <a href="#">Learened {{ $user->lessons()->count() }} Lessons</a>
                 </div>
             </div>
 
@@ -24,7 +24,7 @@
             @foreach($activities as $activity)
                 <div class="row">
                     <div class="col-md-2">
-                        <img class="activities-image" src="/uploads/avatars/default.jpg">  
+                        <img class="activities-image" src="/uploads/avatars/{{ $activity->user->avatar }}">  
                     </div>
                     <div class="col-md-10">
                         <p class="activities-text">
