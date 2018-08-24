@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Connection;
 
 class User extends Authenticatable
 {
@@ -42,12 +43,25 @@ class User extends Authenticatable
         return $this->hasMany(Lesson::class);
     }
 
+    public function followersCount() 
+    {
+        $followers = Connection::where('following_id', $this->id)->get();
+
+        return count($followers);
+    }
+
+    public function followingCount()
+    {
+        return count($this->connections);
+    }
+
     public function totalLearnedWordsCount()
     {
         $totalLearnedWordsCount = 0;
         foreach($this->lessons as $lesson) {
             $totalLearnedWordsCount += $lesson->learnedWordsCount();
         }
+
         return $totalLearnedWordsCount;
     }
 }
