@@ -20,8 +20,7 @@
                     <p>{{$user->followingCount()}}<br/>following</p>
                 </div>
             </div>
-
-             @if(Auth::user()->id != $user->id)
+            @if(Auth::user()->id != $user->id)
                 <div class="row text-center">
                     @if(Auth::user()->isFollowing($user->id))
                         <form action="/unfollow/{{$user->id}}" method="POST">
