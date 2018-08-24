@@ -51,9 +51,10 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
+        return view('users.list');
     }
 
     /**
@@ -82,8 +83,8 @@ class UsersController extends Controller
     public function profile($id) 
     {
         $user = User::find($id);
-
         $activities = $user->activities()->orderBy('updated_at', 'desc')->paginate(4);
+
         return view('users.profile', compact('user', 'activities'));
     }
 

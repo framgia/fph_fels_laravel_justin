@@ -19,3 +19,5 @@ Route::get('profile/{id}', 'UsersController@profile');
 
 Route::post('/follow/{id}', 'ConnectionsController@followUser');
 Route::post('/unfollow/{id}', 'ConnectionsController@unfollowUser');
+
+Route::get('users', 'UsersController@show');

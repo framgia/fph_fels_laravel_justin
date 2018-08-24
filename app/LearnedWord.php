@@ -69,4 +69,17 @@ class LearnedWord extends Model
 
     	return $returnValue;
     }
+
+    public function isCorrect()
+    {
+    	$returnValue = false;
+
+    	$item = Item::find($this->item_id);
+    	$correctAnswer = $item->options()->where('is_correct', 1)->get();
+    	if(strcmp($this->user_answer, $correctAnswer[0]->word) == 0) {
+    		$returnValue = true;
+    	}
+
+    	return $returnValue;
+    }
 }
