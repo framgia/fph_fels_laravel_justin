@@ -71,6 +71,16 @@ class LessonsController extends Controller
         //
     }
 
+    public function startQuiz()
+    {
+        return view('lessons.quiz');
+    }
+
+    public function showResults()
+    {
+        return view('lessons.result');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

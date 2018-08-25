@@ -25,3 +25,6 @@ Route::post('/unfollow/{id}', 'ConnectionsController@unfollowUser');
 
 Route::get('users', 'UsersController@show');
 Route::get('categories', 'CategoriesController@show');
+
+Route::post('results/{id}', 'LessonsController@showResults');
+Route::post('lesson/{id}', 'LessonsController@startQuiz');
