@@ -54,7 +54,7 @@ class UsersController extends Controller
     public function show()
     {
         //
-        $users = User::where('id', '!=', Auth::user()->id)->paginate(4);
+        $users = User::orderBy('updated_at', 'desc')->where('id', '!=', Auth::user()->id)->paginate(4);
 
         return view('users.list', compact('users'));
     }

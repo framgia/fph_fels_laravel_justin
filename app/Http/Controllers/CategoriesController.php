@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class CategoriesController extends Controller
 {
@@ -46,7 +47,9 @@ class CategoriesController extends Controller
     public function show()
     {
         //
-        return view('categories.list');
+        $categories = Category::orderBy('updated_at', 'desc')->paginate(4);
+
+        return view('categories.list', compact('categories'));
     }
 
     /**

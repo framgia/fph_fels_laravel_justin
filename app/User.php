@@ -74,4 +74,15 @@ class User extends Authenticatable
         
         return $returnValue;
     }
+
+    public function isLearned($id)
+    {
+        //check if category is learned/taken by this user
+        $returnValue = false;
+        if($this->lessons()->where('category_id', $id)->get()->count() > 0) {
+            $returnValue = true;
+        }
+
+        return $returnValue;
+    }
 }
