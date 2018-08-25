@@ -24,3 +24,4 @@ Route::post('/follow/{id}', 'ConnectionsController@followUser');
 Route::post('/unfollow/{id}', 'ConnectionsController@unfollowUser');
 
 Route::get('users', 'UsersController@show');
+Route::get('categories', 'CategoriesController@show');
