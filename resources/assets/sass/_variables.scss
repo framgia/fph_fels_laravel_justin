@@ -112,4 +112,29 @@ $panel-default-heading-bg: #fff;
   padding: 10px; 
   border-radius: 15px;
   margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.follow-button {
+  width: 225px; 
+  border-radius: 50px;
+  margin: 5px 0px 10px 0px;
+  background-color: #428bca;
+  color: white;
+}
+
+.learn-button {
+  width: 225px; 
+  border-radius: 50px;
+  margin: 60px 0px 10px 0px;
+  background-color: #428bca;
+  color: white;
+}
+
+.result-button {
+  width: 225px; 
+  border-radius: 50px;
+  margin: 5px 0px 10px 0px;
+  background-color: #C0C0C0;
+  color: black;
 }
