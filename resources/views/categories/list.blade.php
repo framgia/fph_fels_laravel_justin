@@ -21,13 +21,11 @@
                             </div>
                             <div class="col-md-4 pull-right">
                                 @if(Auth::user()->isLearned($category->id))
-                                    <form action="/results/{{ $category->id }}" method="POST">
-                                        {{ csrf_field() }}
+                                    <form action="/results/{{ $category->id }}" method="GET">
                                         <input class="result-button" type="submit" class="btn btn-sm" value="VIEW RESULTS">
                                     </form>
                                 @else
-                                    <form action="/lesson/{{ $category->id }}" method="POST">
-                                        {{ csrf_field() }}
+                                    <form action="/lesson/{{ $category->id }}" method="GET">
                                         <input class="learn-button" type="submit" class="btn btn-sm" value="LEARN">
                                     </form>
                                 @endif

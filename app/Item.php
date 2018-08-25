@@ -16,4 +16,10 @@ class Item extends Model
     {
         return $this->hasMany(Option::class);
     }
+
+    public function getCorrectWord() {
+    	$word = $this->options()->where('is_correct', 1)->first()->word;
+
+    	return $word;
+    }
 }

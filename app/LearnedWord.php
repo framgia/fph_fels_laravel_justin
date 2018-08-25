@@ -19,11 +19,23 @@ class LearnedWord extends Model
     	$returnValue = false;
 
     	$item = Item::find($this->item_id);
-    	$correctAnswer = $item->options()->where('is_correct', 1)->get();
-    	if(strcmp($this->user_answer, $correctAnswer[0]->word) == 0) {
+    	$correctAnswer = $item->getCorrectWord();
+    	if(strcmp($this->user_answer, $correctAnswer) == 0) {
     		$returnValue = true;
     	}
 
     	return $returnValue;
+    }
+
+    public function getItemWord() {
+        $word = Item::find($this->item_id)->word;
+
+        return $word;
+    }
+
+    public function getCorrectWord() {
+        $word = Item::find($this->item_id)->getCorrectWord();
+
+        return $word;
     }
 }

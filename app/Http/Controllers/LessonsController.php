@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class LessonsController extends Controller
 {
@@ -76,9 +77,15 @@ class LessonsController extends Controller
         return view('lessons.quiz');
     }
 
-    public function showResults()
+    public function showResults($id)
     {
-        return view('lessons.result');
+        $lesson = Auth::user()->lessons()->where('category_id', $id)->first();
+        if($lesson == null) {
+            return redirect()->back();
+        }else {
+            return view('lessons.result', compact('lesson'));
+        }
+        
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Category;
 
 class Lesson extends Model
 {
@@ -19,7 +20,7 @@ class Lesson extends Model
 
     public function learnedWordsCount() 
     {
-        return count($this->learnedWords);
+        return $this->learnedWords->count();
     }
 
     public function correctLearnedWordsCount() 
@@ -32,5 +33,12 @@ class Lesson extends Model
     	}
 
     	return $correctLearnedWordsCount;
+    }
+
+    public function getCategoryTitle()
+    {
+        $category = Category::where('id', $this->category_id)->first();
+
+        return $category->title;
     }
 }
