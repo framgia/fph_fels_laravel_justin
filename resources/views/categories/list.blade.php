@@ -21,7 +21,7 @@
                             </div>
                             <div class="col-md-4 pull-right">
                                 @if(Auth::user()->isLearned($category->id))
-                                    <form action="/results/{{ $category->id }}" method="GET">
+                                    <form action="/results/{{ Auth::user()->id . '/' . $category->id }}" method="GET">
                                         <input class="result-button" type="submit" class="btn btn-sm" value="VIEW RESULTS">
                                     </form>
                                 @else
