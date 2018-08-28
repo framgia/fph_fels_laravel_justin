@@ -29,3 +29,8 @@ Route::get('categories', 'CategoriesController@show');
 Route::get('results/{user_id}/{category_id}', 'LessonsController@showResults');
 Route::get('lesson/{id}', 'LessonsController@startQuiz');
 Route::post('lesson/create', 'LessonsController@create');
+
+
+Route::group(['middleware' => ['auth', 'admin']], function() {
+	Route::get('/admin', 'DataManagementController@index');
+});

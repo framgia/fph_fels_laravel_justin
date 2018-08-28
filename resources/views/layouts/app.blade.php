@@ -42,7 +42,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @if (Auth::guest())
+                        @if(Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
@@ -54,6 +54,12 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
+                                    @if(Auth::user()->isAdmin())
+                                        <li>
+                                            <a href="/admin"><i class="fa fa-btn fa-user"></i>Data Management</a></li>
+                                        </li>
+                                    @endif
+
                                     <li>
                                         <a href="/profile/{{ Auth::user()->id }}"><i class="fa fa-btn fa-user"></i>Profile</a></li>
                                     </li>
