@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Category;
+use App\Activity;
+use App\LearnedWord;
 
 class Lesson extends Model
 {
@@ -40,5 +42,15 @@ class Lesson extends Model
         $category = Category::where('id', $this->category_id)->first();
 
         return $category->title;
+    }
+
+    public function deleteActivities()
+    {
+        Activity::where('reference_id', $this->id)->delete();
+    }
+
+    public function deleteLearnedWords()
+    {
+        LearnedWord::where('lesson_id', $this->id)->delete();
     }
 }

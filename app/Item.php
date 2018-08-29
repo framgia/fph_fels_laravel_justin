@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Option;
 
 class Item extends Model
 {
@@ -21,5 +22,10 @@ class Item extends Model
     	$word = $this->options()->where('is_correct', 1)->first()->word;
 
     	return $word;
+    }
+
+    public function deleteOptions()
+    {
+        Option::where('item_id', $this->id)->delete();
     }
 }

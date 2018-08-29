@@ -97,6 +97,20 @@ class CategoriesController extends Controller
     {
         //
         $category = Category::find($id);
+        $items = $category->items;
+        foreach($items as $item) {
+            $item->deleteOptions();
+        }
+
+        $lessons = $category->lessons;
+        foreach($lessons as $lesson) {
+            $lesson->deleteActivities();
+
+            $lesson->deleteLearnedWords();
+        }
+
+        $category->deleteItems();
+        $category->deleteLessons();
         $category->delete();
 
         return redirect('admin/category');
