@@ -32,9 +32,10 @@ class OptionsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id, Request $request)
     {
         //
+        return redirect('/admin/item/'.$id);
     }
 
     /**
@@ -57,6 +58,7 @@ class OptionsController extends Controller
     public function edit($id)
     {
         //
+        return redirect('/admin/item/'.$id);
     }
 
     /**
@@ -80,5 +82,6 @@ class OptionsController extends Controller
     public function destroy($id)
     {
         //
+        return redirect('/admin/item/1');
     }
 }

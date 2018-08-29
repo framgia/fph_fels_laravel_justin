@@ -36,6 +36,7 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         //
+        return redirect('admin/category');
     }
 
     /**
@@ -61,6 +62,7 @@ class CategoriesController extends Controller
     public function edit($id)
     {
         //
+        return redirect('admin/category');
     }
 
     /**
@@ -84,5 +86,6 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         //
+        return redirect('admin/category');
     }
 }

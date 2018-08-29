@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('home');
+
 Route::get('profile/{id}', 'UsersController@profile');
 
 Route::post('/follow/{id}', 'ConnectionsController@followUser');
@@ -32,5 +33,25 @@ Route::post('lesson/create', 'LessonsController@create');
 
 
 Route::group(['middleware' => ['auth', 'admin']], function() {
-	Route::get('/admin', 'DataManagementController@index');
+	Route::get('/admin/category', 'DataManagementController@index');
+	Route::get('/admin/category/create', 'DataManagementController@createCategory');
+	Route::post('/admin/category/create', 'CategoriesController@store');
+	Route::get('/admin/category/{id}', 'DataManagementController@displayItems');
+	Route::get('/admin/category/{id}/edit', 'DataManagementController@editCategory');
+	Route::post('/admin/category/{id}/edit', 'CategoriesController@edit');
+	Route::get('/admin/category/{id}/delete', 'CategoriesController@destroy');
+
+	Route::get('/admin/category/{id}/item/create', 'DataManagementController@createItem');
+	Route::post('/admin/category/{id}/item/create', 'ItemsController@store');
+	Route::get('/admin/item/{id}/edit', 'DataManagementController@editItem');
+	Route::post('/admin/item/{id}/edit', 'ItemsController@edit');
+	Route::get('/admin/item/{id}/delete', 'ItemsController@destroy');
+
+	Route::get('/admin/item/{id}', 'DataManagementController@displayOptions');
+	Route::get('/admin/item/{id}/option/create', 'DataManagementController@createOption');
+	Route::post('/admin/item/{id}/option/create', 'OptionsController@store');
+	Route::get('/admin/option/{id}/edit', 'DataManagementController@editOption');
+	Route::post('/admin/option/{id}/edit', 'OptionsController@edit');
+	Route::get('/admin/option/{id}/delete', 'OptionsController@destroy');
 });
+

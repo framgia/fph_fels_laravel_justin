@@ -56,7 +56,7 @@
                                 <ul class="dropdown-menu" role="menu">
                                     @if(Auth::user()->isAdmin())
                                         <li>
-                                            <a href="/admin"><i class="fa fa-btn fa-user"></i>Data Management</a></li>
+                                            <a href="/admin/category"><i class="fa fa-btn fa-user"></i>Data Management</a></li>
                                         </li>
                                     @endif
 

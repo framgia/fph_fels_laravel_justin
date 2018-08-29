@@ -32,9 +32,10 @@ class ItemsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id, Request $request)
     {
         //
+        return redirect('admin/category/'.$id);
     }
 
     /**
@@ -57,6 +58,7 @@ class ItemsController extends Controller
     public function edit($id)
     {
         //
+        return redirect('admin/category/'.$id);
     }
 
     /**
@@ -80,5 +82,6 @@ class ItemsController extends Controller
     public function destroy($id)
     {
         //
+        return redirect('admin/category/2');
     }
 }
