@@ -62,7 +62,7 @@ class User extends Authenticatable
         $connections = $this->getConnections();
         array_push($connections, $this->id);
 
-        $activities = Activity::orderBy('updated_at', 'desc')->whereIn('user_id', $connections)->get();
+        $activities = Activity::orderBy('updated_at', 'desc')->whereIn('user_id', $connections);
 
         return $activities;
     }
