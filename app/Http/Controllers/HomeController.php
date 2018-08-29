@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
-use App\Activity;
 
 class HomeController extends Controller
 {
@@ -27,12 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-
-        $connections = $user->getConnections();
-        array_push($connections, $user->id);
-
-        $activities = Activity::orderBy('updated_at', 'desc')->whereIn('user_id', $connections)->paginate(4);
-
+        $activities = $user->getDashboardActivities()->paginate(4);
         
         return view('users.dashboard', compact('user', 'activities'));
     }
