@@ -9,25 +9,25 @@
             <hr class="custom-hr">
             <div class="row">
                 <div class="col-md-4 col-md-offset-2 text-center">
-                    <p>50<br/>followers</p>
+                    <p>{{$user->followersCount()}}<br/>followers</p>
                 </div>
                 <div class="col-md-4 text-center">
-                    <p>20<br/>following</p>
+                    <p>{{$user->followingCount()}}<br/>following</p>
                 </div>
             </div>
 
-            <div class="row text-center">
-                <form action="/profile" method="POST">
-                    <input class="follow-button" type="submit" class="btn btn-sm" value="FOLLOW">
-                </form>
-            </div>
-
-            <div class="row text-center">
-                <a href="#">Learned 20 Words</a>
+             @if(Auth::user()->id != $user->id)
+                <div class="row text-center">
+                    <form action="/profile" method="POST">
+                        <input class="follow-button" type="submit" class="btn btn-sm" value="FOLLOW">
+                    </form>
+                </div>
+            @endif
+             <div class="row text-center">
+                <a href="#">Learned {{ $user->totalLearnedWordsCount() }} Words</a>
             </div>
         </div>
-
-        <div class="col-md-7 activities">
+         <div class="col-md-7 activities">
             <h4 class="activities-header">Activities</h4>
             <hr class="custom-hr">
             <div class="row">
