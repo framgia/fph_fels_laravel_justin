@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Item;
+use App\Option;
 
 class ItemsController extends Controller
 {
@@ -35,6 +37,17 @@ class ItemsController extends Controller
     public function store($id, Request $request)
     {
         //
+        $item = new Item;
+        $item->category_id = $id;
+        $item->word = $request->itemWord;
+        $item->save();
+
+        $correctAnswer = new Option;
+        $correctAnswer->item_id = $item->id;
+        $correctAnswer->word = $request->correctAnswer;
+        $correctAnswer->is_correct = 1;
+        $correctAnswer->save();
+
         return redirect('admin/category/'.$id);
     }
 
@@ -55,10 +68,18 @@ class ItemsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         //
-        return redirect('admin/category/'.$id);
+        $item = Item::find($id);
+        $item->word = $request->itemWord;
+        $item->save();
+
+        $correctAnswer = Option::find($item->getCorrectWordId());
+        $correctAnswer->word = $request->correctAnswer;
+        $correctAnswer->save();
+
+        return redirect('admin/category/'.$item->category_id);
     }
 
     /**
@@ -82,6 +103,11 @@ class ItemsController extends Controller
     public function destroy($id)
     {
         //
-        return redirect('admin/category/2');
+        $item = Item::find($id);
+        $categoryId = $item->category_id;
+        $options = $item->options()->delete();
+        $item->delete();
+
+        return redirect('admin/category/'.$categoryId);
     }
 }

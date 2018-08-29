@@ -28,4 +28,10 @@ class Item extends Model
     {
         Option::where('item_id', $this->id)->delete();
     }
+
+    public function getCorrectWordId() {
+        $id = $this->options()->where('is_correct', 1)->first()->id;
+
+        return $id;
+    }
 }

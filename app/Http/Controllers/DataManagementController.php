@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Item;
 
 class DataManagementController extends Controller
 {
@@ -29,7 +30,9 @@ class DataManagementController extends Controller
 
     public function displayItems($id)
     {
-    	return view('admin.listItem', compact('id'));
+        $items = Item::where('category_id', $id)->get();
+
+    	return view('admin.listItem', compact('id', 'items'));
     }
 
     public function createItem($id)
@@ -39,7 +42,9 @@ class DataManagementController extends Controller
 
     public function editItem($id)
     {
-        return view('admin.editItem');
+        $item = Item::find($id);
+
+        return view('admin.editItem', compact('item'));
     }
 
     public function displayOptions($id)

@@ -10,16 +10,16 @@
     </div>
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <form action="/admin/item/2/edit" method="POST">
+            <form action="/admin/item/{{ $item->id }}/edit" method="POST">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label for="itemWord">Item Word</label>
-                    <input type="text" class="form-control" id="itemWord" name="itemWord" value="Item Word" required>
+                    <input type="text" class="form-control" id="itemWord" name="itemWord" value="{{ $item->word }}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="correctAnswer">Correct Answer</label>
-                    <input type="text" class="form-control" id="correctAnswer" name="correctAnswer" value="Correct Answer" required>
+                    <input type="text" class="form-control" id="correctAnswer" name="correctAnswer" value="{{ $item->getCorrectWord() }}" required>
                 </div>
 
                 <button type="submit" class="btn btn-primary pull-right">Submit</button>

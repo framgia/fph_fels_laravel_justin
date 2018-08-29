@@ -21,21 +21,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Item Word 1</td>
-                    <td>Correct Option 1</td>
-                    <td><a href="/admin/item/1">View Options</a> | <a href="/admin/item/1/edit">Edit</a> | <a href="/admin/item/1/delete">Delete</a></td>
-                </tr>
-                <tr>
-                    <td>Item Word 2</td>
-                    <td>Correct Option 2</td>
-                    <td><a href="/admin/item/2">View Options</a> | <a href="/admin/item/2/edit">Edit</a> | <a href="/admin/item/2/delete">Delete</a></td>
-                </tr>
-                <tr>
-                    <td>Item Word 3</td>
-                    <td>Correct Option 3</td>
-                    <td><a href="/admin/item/3">View Options</a> | <a href="/admin/item/3/edit">Edit</a> | <a href="/admin/item/3/delete">Delete</a></td>
-                </tr>
+                @foreach($items as $item)
+                    <tr>
+                        <td>{{ $item->word }}</td>
+                        <td>{{ $item->getCorrectWord() }}</td>
+                        <td><a href="/admin/item/{{ $item->id }}">View Options</a> | <a href="/admin/item/{{ $item->id }}/edit">Edit</a> | <a href="/admin/item/{{ $item->id }}/delete">Delete</a></td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>
