@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
 
 class DataManagementController extends Controller
 {
     //
     public function index()
     {
-    	return view('admin.listCategory');
+        $categories = Category::all();
+
+    	return view('admin.listCategory', compact('categories'));
     }
 
     public function createCategory()
@@ -19,7 +22,9 @@ class DataManagementController extends Controller
 
     public function editCategory($id)
     {
-        return view('admin.editCategory');
+        $category = Category::find($id);
+
+        return view('admin.editCategory', compact('category'));
     }
 
     public function displayItems($id)

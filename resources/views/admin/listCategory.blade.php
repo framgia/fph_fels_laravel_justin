@@ -22,24 +22,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Category Title 1</td>
-                    <td>This is the category 1 description</td>
-                    <td><a href="/admin/category/1">View Items</a> | <a href="/admin/category/1/edit">Edit</a> | <a href="/admin/category/1/delete">Delete</a></td>
-                    <td>Ready</td>
-                </tr>
-                <tr>
-                    <td>Category Title 2</td>
-                    <td>This is the category 2 description</td>
-                    <td><a href="/admin/category/2">View Items</a> | <a href="/admin/category/2/edit">Edit</a> | <a href="/admin/category/2/delete">Delete</a></td>
-                    <td>Not Ready</td>
-                </tr>
-                <tr>
-                    <td>Category Title 3</td>
-                    <td>This is the category 3 description</td>
-                    <td><a href="/admin/category/3">View Items</a> | <a href="/admin/category/3/edit">Edit</a> | <a href="/admin/category/3/delete">Delete</a></td>
-                    <td>Not Ready</td>
-                </tr>
+                @foreach($categories as $category)
+                    <tr>
+                        <td>{{ $category->title }}</td>
+                        <td>{{ $category->description }}</td>
+                        <td><a href="/admin/category/{{ $category->id }}">View Items</a> | <a href="/admin/category/{{ $category->id }}/edit">Edit</a> | <a href="/admin/category/{{ $category->id }}/delete">Delete</a></td>
+                        @if($category->status == false)
+                            <td>Not Ready</td>
+                        @else
+                            <td>Ready</td>
+                        @endif
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

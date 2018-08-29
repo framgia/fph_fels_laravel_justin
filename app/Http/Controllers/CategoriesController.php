@@ -36,6 +36,11 @@ class CategoriesController extends Controller
     public function store(Request $request)
     {
         //
+        $category = new Category;
+        $category->title = $request->categoryTitle;
+        $category->description = $request->categoryDescription;
+        $category->save();
+
         return redirect('admin/category');
     }
 
@@ -59,9 +64,14 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         //
+        $category = Category::find($id);
+        $category->title = $request->categoryTitle;
+        $category->description = $request->categoryDescription;
+        $category->save();
+
         return redirect('admin/category');
     }
 
@@ -86,6 +96,9 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         //
+        $category = Category::find($id);
+        $category->delete();
+
         return redirect('admin/category');
     }
 }
