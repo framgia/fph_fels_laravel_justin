@@ -56,7 +56,8 @@ class UsersController extends Controller
         //
         $user = User::find($id);
         
-        return view('users.profile', array('user' => $user));
+        $activities = $user->activities()->paginate(4);
+        return view('users.profile', compact('user', 'activities'));
     }
 
     /**
