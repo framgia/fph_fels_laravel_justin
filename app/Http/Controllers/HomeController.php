@@ -28,7 +28,7 @@ class HomeController extends Controller
     {
         $user = Auth::user();
 
-        $connections = array_map('end', $user->connections()->select('following_id')->get()->toArray());
+        $connections = $user->getConnections();
         array_push($connections, $user->id);
 
         $activities = Activity::orderBy('updated_at', 'desc')->whereIn('user_id', $connections)->paginate(4);

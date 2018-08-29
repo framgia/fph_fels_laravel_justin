@@ -50,4 +50,9 @@ class User extends Authenticatable
         }
         return $totalLearnedWordsCount;
     }
+
+    public function getConnections()
+    {
+        return array_map('end', $this->connections()->select('following_id')->get()->toArray());
+    }
 }

@@ -10,7 +10,7 @@ class LearnedWord extends Model
 
     public function lesson()
     {
-    	return $this->belongsTo(Lesson::class);
+        return $this->belongsTo(Lesson::class);
     }
 
     public function item()
@@ -20,13 +20,13 @@ class LearnedWord extends Model
 
     public function isCorrect()
     {
-    	$returnValue = false;
+        $returnValue = false;
 
-    	$correctAnswer = $this->item->options()->where('is_correct', 1)->get();
-    	if(strcmp($this->user_answer, $correctAnswer[0]->word) == 0) {
-    		$returnValue = true;
-    	}
+        $correctAnswer = $this->item->options()->where('is_correct', 1)->get();
+        if(strcmp($this->user_answer, $correctAnswer[0]->word) == 0) {
+            $returnValue = true;
+        }
 
-    	return $returnValue;
+        return $returnValue;
     }
 }
