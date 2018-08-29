@@ -9,7 +9,7 @@ class Lesson extends Model
     //
     public function user()
     {
-    	return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     public function learnedWords()
@@ -22,4 +22,15 @@ class Lesson extends Model
         return count($this->learnedWords);
     }
 
+    public function correctLearnedWordsCount() 
+    {
+        $correctLearnedWordsCount = 0;
+        foreach($this->learnedWords as $learnedWord) {
+            if($learnedWord->isCorrect()) {
+                $correctLearnedWordsCount++;
+            }
+        }
+
+        return $correctLearnedWordsCount;
+    }
 }

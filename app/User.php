@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Activity;
 
 class User extends Authenticatable
 {
@@ -49,5 +50,20 @@ class User extends Authenticatable
             $totalLearnedWordsCount += $lesson->learnedWordsCount();
         }
         return $totalLearnedWordsCount;
+    }
+
+    public function getConnections()
+    {
+        return array_map('end', $this->connections()->select('following_id')->get()->toArray());
+    }
+
+    public function getDashboardActivities()
+    {
+        $connections = $this->getConnections();
+        array_push($connections, $this->id);
+
+        $activities = Activity::orderBy('updated_at', 'desc')->whereIn('user_id', $connections);
+
+        return $activities;
     }
 }

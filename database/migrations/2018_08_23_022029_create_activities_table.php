@@ -17,7 +17,7 @@ class CreateActivitiesTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->boolean('type')->default(0); //0 if following, 1 if Learned
-            $table->integer('reference_id');
+            $table->integer('reference_id');// reference_id = (type == 0) ? connection_id : lesson_id    
             $table->timestamps();
         });
     }

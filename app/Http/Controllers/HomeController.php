@@ -26,7 +26,8 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
+        $activities = $user->getDashboardActivities()->paginate(4);
         
-        return view('users.dashboard', compact('user'));
+        return view('users.dashboard', compact('user', 'activities'));
     }
 }
