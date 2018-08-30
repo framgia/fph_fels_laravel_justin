@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-4 col-md-offset-2">
-        <h3>Category Name Items</h3>
+        <h3>{{ App\Category::find($id)->title }} Category</h3>
     </div>
     <div class="col-md-4">
         <a href="/admin/category/{{ $id }}/item/create" class="btn btn-primary pull-right">Add Item</a>
