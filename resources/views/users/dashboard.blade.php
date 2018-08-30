@@ -28,13 +28,13 @@
                     </div>
                     <div class="col-md-10">
                         <p class="activities-text">
-                            <a href="#">
+                            <a href="/profile/{{ $activity->user->id }}">
                                 {{ (strcmp($activity->user->name, $user->name)) ? $activity->user->name : 'You' }}
                             </a> 
                             @if($activity->type == 0)
-                                followed <a href="#">{{ App\User::find(App\Connection::find($activity->reference_id)->following_id)->name }}</a>
+                                followed <a href="/profile/{{ $activity->getFollowingUser()->id }}">{{ $activity->getFollowingUser()->name }}</a>
                             @else
-                                learned {{ App\Lesson::find($activity->reference_id)->correctLearnedWordsCount() }} of {{ count(App\Lesson::find($activity->reference_id)->learnedWords) }} words in <a href="#">{{ App\Category::find(App\Lesson::find($activity->reference_id)->category_id)->title }}</a>
+                                learned {{ $activity->getLesson()->correctLearnedWordsCount() }} of {{ $activity->getLesson()->learnedWords->count() }} words in <a href="#">{{ $activity->getLesson()->category->title }}</a>
                             @endif
 
 
