@@ -33,6 +33,9 @@ Route::post('lesson/create', 'LessonsController@create');
 
 Route::get('learnedwords/{id}', 'LearnedWordsController@index');
 
+Route::get('edit/profile', 'UsersController@edit');
+Route::post('edit/profile', 'UsersController@update');
+
 
 Route::group(['middleware' => ['auth', 'admin']], function() {
 	Route::get('/admin/category', 'DataManagementController@index');

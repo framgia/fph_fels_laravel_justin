@@ -5,6 +5,11 @@
         <div class="col-md-4">
             <img class="user-image" src="/uploads/avatars/{{ $user->avatar }}">            
             <h4 class="text-center">{{ $user->name }}</h4>
+            @if($user->id == Auth::user()->id)
+                <div class="text-center">
+                    <a href="/edit/profile" class="btn btn-primary">Edit Profile</a>
+                </div>
+            @endif
             <hr class="custom-hr">
            <!-- <form enctype="multipart/form-data" action="/profile" method="POST">
                <input type="file" name="avatar">

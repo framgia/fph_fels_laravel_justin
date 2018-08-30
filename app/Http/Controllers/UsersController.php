@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\User;
+use Image;
 
 class UsersController extends Controller
 {
@@ -65,9 +66,12 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
         //
+        $user = Auth::user();
+
+        return view('users.editProfile', compact('user'));
     }
 
     /**
@@ -77,9 +81,27 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        $user = Auth::user();
+
+        if($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save(public_path('/uploads/avatars/' . $filename));
+            $user->avatar = $filename;
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if($request->profile != null) {
+            $user->password = bcrypt($request->password);
+        }
+
+        $user->save();
+
+        return redirect('/profile/'.$user->id);
     }
 
     public function profile($id) 
