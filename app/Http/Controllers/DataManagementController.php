@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Item;
+use App\Option;
 
 class DataManagementController extends Controller
 {
@@ -49,7 +50,9 @@ class DataManagementController extends Controller
 
     public function displayOptions($id)
     {
-    	return view('admin.listOption', compact('id'));
+        $options = Option::where('item_id', $id)->get();
+
+    	return view('admin.listOption', compact('id', 'options'));
     }
 
     public function createOption($id)
@@ -59,6 +62,8 @@ class DataManagementController extends Controller
 
     public function editOption($id)
     {
-        return view('admin.editOption');
+        $option = Option::find($id);
+        
+        return view('admin.editOption', compact('option'));
     }
 }

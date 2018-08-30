@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Option;
 
 class OptionsController extends Controller
 {
@@ -35,6 +36,12 @@ class OptionsController extends Controller
     public function store($id, Request $request)
     {
         //
+        $option = new Option;
+        $option->item_id = $id;
+        $option->word = $request->optionWord;
+        $option->is_correct = 0;
+        $option->save();
+        
         return redirect('/admin/item/'.$id);
     }
 
@@ -55,10 +62,14 @@ class OptionsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
         //
-        return redirect('/admin/item/'.$id);
+        $option = Option::find($id);
+        $option->word = $request->optionWord;
+        $option->save();
+
+        return redirect('/admin/item/'.$option->item_id);
     }
 
     /**
@@ -82,6 +93,21 @@ class OptionsController extends Controller
     public function destroy($id)
     {
         //
-        return redirect('/admin/item/1');
+        $option = Option::find($id);
+        $itemId = $option->item_id;
+        $categoryId = $option->item->category_id;
+        $location = "/admin";
+
+        if($option->is_correct) {
+            $item = $option->item;
+            $item->deleteOptions();
+            $item->delete();
+            $location .= "/category/".$categoryId;
+        }else {
+            $option->delete();
+            $location .= "/item/".$itemId;
+        }
+
+        return redirect($location);
     }
 }

@@ -4,7 +4,7 @@
 <div class="container profile-margin">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <h4 class="activities-header">Create Option</h4>
+            <h4 class="activities-header">Create Option for "{{ App\Item::find($id)->word }}" Item</h4>
             <hr class="custom-hr">
         </div>
     </div>
