@@ -6,7 +6,14 @@
         <h3>"{{ App\Item::find($id)->word }}" Item</h3>
     </div>
     <div class="col-md-4">
-        <a href="/admin/item/{{ $id }}/option/create" class="btn btn-primary pull-right">Add Options</a>
+        <div class="row">
+            <div class="col-md-9">
+                <a href="/admin/category/{{ $options->first()->item->category_id }}" class="btn btn-primary pull-right">Back</a>
+            </div>
+            <div class="col-md-3">
+                <a href="/admin/item/{{ $id }}/option/create" class="btn btn-primary pull-right">Add Options</a>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -6,7 +6,14 @@
         <h3>{{ App\Category::find($id)->title }} Category</h3>
     </div>
     <div class="col-md-4">
-        <a href="/admin/category/{{ $id }}/item/create" class="btn btn-primary pull-right">Add Item</a>
+        <div class="row">
+            <div class="col-md-9">
+                <a href="/admin/category" class="btn btn-primary pull-right">Back</a>
+            </div>
+            <div class="col-md-3">
+                <a href="/admin/category/{{ $id }}/item/create" class="btn btn-primary pull-right">Add Item</a>
+            </div>
+        </div>
     </div>
 </div>
 
