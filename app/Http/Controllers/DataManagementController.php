@@ -44,7 +44,7 @@ class DataManagementController extends Controller
     {
         $item = Item::find($id);
 
-        return view('admin.editItem', compact('id', 'item'));
+        return view('admin.editItem', compact('item'));
     }
 
     public function displayOptions($id)
