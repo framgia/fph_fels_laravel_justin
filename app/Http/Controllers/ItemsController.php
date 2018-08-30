@@ -105,7 +105,7 @@ class ItemsController extends Controller
         //
         $item = Item::find($id);
         $categoryId = $item->category_id;
-        $options = $item->options()->delete();
+        $item->deleteOptions();
         $item->delete();
 
         return redirect('admin/category/'.$categoryId);
