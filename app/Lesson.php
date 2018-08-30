@@ -12,6 +12,11 @@ class Lesson extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function learnedWords()
     {
         return $this->hasMany(LearnedWord::class);

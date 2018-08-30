@@ -54,6 +54,9 @@ class UsersController extends Controller
     public function show($id)
     {
         //
+        $user = User::find($id);
+        
+        return view('users.profile', array('user' => $user));
     }
 
     /**
@@ -77,11 +80,6 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         //
-    }
-
-    public function profile($id) {
-        $user = User::find($id);
-        return view('users.profile', array('user' => $user));
     }
 
     /**

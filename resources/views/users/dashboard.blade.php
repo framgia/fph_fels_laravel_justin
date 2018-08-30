@@ -32,9 +32,9 @@
                                 {{ (strcmp($activity->user->name, $user->name)) ? $activity->user->name : 'You' }}
                             </a> 
                             @if($activity->type == 0)
-                                followed <a href="/profile/{{ App\User::find(App\Connection::find($activity->reference_id)->following_id)->id }}">{{ App\User::find(App\Connection::find($activity->reference_id)->following_id)->name }}</a>
+                                followed <a href="/profile/{{ $activity->getFollowingUser()->id }}">{{ $activity->getFollowingUser()->name }}</a>
                             @else
-                                learned {{ App\Lesson::find($activity->reference_id)->correctLearnedWordsCount() }} of {{ count(App\Lesson::find($activity->reference_id)->learnedWords) }} words in <a href="#">{{ App\Category::find(App\Lesson::find($activity->reference_id)->category_id)->title }}</a>
+                                learned {{ $activity->getLesson()->correctLearnedWordsCount() }} of {{ $activity->getLesson()->learnedWords->count() }} words in <a href="#">{{ $activity->getLesson()->category->title }}</a>
                             @endif
 
 
