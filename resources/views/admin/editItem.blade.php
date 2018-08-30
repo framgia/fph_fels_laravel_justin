@@ -4,7 +4,7 @@
 <div class="container profile-margin">
     <div class="row">
         <div class="col-md-10 col-md-offset-1">
-            <h4 class="activities-header">Edit Item</h4>
+            <h4 class="activities-header">Edit Item for {{ App\Category::find($id)->title }} Category</h4>
             <hr class="custom-hr">
         </div>
     </div>
