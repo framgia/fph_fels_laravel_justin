@@ -36,7 +36,7 @@
                 </div>
             @endif
              <div class="row text-center">
-                <a href="#">Learned {{ $user->totalLearnedWordsCount() }} Words</a>
+                <a href="/learnedwords/{{ $user->id }}">Learned {{ $user->totalLearnedWordsCount() }} Words</a>
             </div>
         </div>
          <div class="col-md-7 activities">

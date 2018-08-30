@@ -31,6 +31,8 @@ Route::get('results/{user_id}/{category_id}', 'LessonsController@showResults');
 Route::get('lesson/{id}', 'LessonsController@startQuiz');
 Route::post('lesson/create', 'LessonsController@create');
 
+Route::get('learnedwords/{id}', 'LearnedWordsController@index');
+
 
 Route::group(['middleware' => ['auth', 'admin']], function() {
 	Route::get('/admin/category', 'DataManagementController@index');

@@ -11,7 +11,7 @@
                 </div>   
                 <div class="col-md-8">     
                     <h4>{{ $user->name }}</h4>
-                    <a href=#>Learned {{ $user->totalLearnedWordsCount() }} Words</a><br/>
+                    <a href="/learnedwords/{{ Auth::user()->id }}">Learned {{ $user->totalLearnedWordsCount() }} Words</a><br/>
                     <a href="#">Learned {{ $user->lessons()->count() }} Lessons</a>
                 </div>
             </div>
