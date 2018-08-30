@@ -68,6 +68,7 @@ class CategoriesController extends Controller
     {
         //
         $category = Category::find($id);
+        $category->setStatusNotReady();
         $category->title = $request->categoryTitle;
         $category->description = $request->categoryDescription;
         $category->save();
@@ -114,5 +115,21 @@ class CategoriesController extends Controller
         $category->delete();
 
         return redirect('admin/category');
+    }
+
+    public function toggleStatus($id)
+    {
+        $category = Category::find($id);
+        if($category->status) {
+            $category->status = 0;
+            $category->save();
+        }else {
+            if($category->items->count() > 0) {
+                $category->status = 1;
+                $category->save();
+            }
+        }
+
+        return redirect('admin/category');        
     }
 }

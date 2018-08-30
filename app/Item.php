@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Option;
+use App\LearnedWord;
 
 class Item extends Model
 {
@@ -33,5 +34,10 @@ class Item extends Model
         $id = $this->options()->where('is_correct', 1)->first()->id;
 
         return $id;
+    }
+
+    public function deleteLearnedWords()
+    {
+        $learnedWords = LearnedWord::where('item_id', $this->id)->delete();
     }
 }

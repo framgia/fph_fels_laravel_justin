@@ -102,9 +102,8 @@ class LessonsController extends Controller
 
     public function startQuiz($id)
     {
-        if(Category::find($id) != null && Auth::user()->lessons()->where('category_id', $id)->first() == null) {
-            $category = Category::find($id);
-
+        $category = Category::find($id);
+        if($category != null && $category->status == true && Auth::user()->lessons()->where('category_id', $id)->first() == null) {
             return view('lessons.quiz', compact('category'));
         }else {
             return redirect('/');
@@ -114,7 +113,8 @@ class LessonsController extends Controller
     public function showResults($user_id, $category_id)
     {
         $lesson = User::find($user_id)->lessons()->where('category_id', $category_id)->first();
-        if(Category::find($category_id) == null || $lesson == null) {
+        $category = Category::find($category_id);
+        if($category == null || $category->status == false || $lesson == null) {
             return redirect('/');
         }else {
             return view('lessons.result', compact('lesson'));

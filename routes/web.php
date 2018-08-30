@@ -53,5 +53,7 @@ Route::group(['middleware' => ['auth', 'admin']], function() {
 	Route::get('/admin/option/{id}/edit', 'DataManagementController@editOption');
 	Route::post('/admin/option/{id}/edit', 'OptionsController@edit');
 	Route::get('/admin/option/{id}/delete', 'OptionsController@destroy');
+
+	Route::get('/admin/category/{id}/toggleStatus', 'CategoriesController@toggleStatus');
 });
 

@@ -27,11 +27,13 @@
                         <td>{{ $category->title }}</td>
                         <td>{{ $category->description }}</td>
                         <td><a href="/admin/category/{{ $category->id }}">View Items</a> | <a href="/admin/category/{{ $category->id }}/edit">Edit</a> | <a href="/admin/category/{{ $category->id }}/delete">Delete</a></td>
+                        <td class="text-center">
                         @if($category->status == false)
-                            <td>Not Ready</td>
+                            <a href="/admin/category/{{ $category->id }}/toggleStatus" class="btn btn-danger btn-sm">Not Ready</a>
                         @else
-                            <td>Ready</td>
+                            <a href="/admin/category/{{ $category->id }}/toggleStatus" class="btn btn-primary btn-sm">Ready</a>
                         @endif
+                        </td>
                     </tr>
                 @endforeach
             </tbody>

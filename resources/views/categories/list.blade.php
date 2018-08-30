@@ -8,31 +8,33 @@
             <hr class="custom-hr">
 
             @foreach($categories as $category)
-                <div class="row">
-                    <div class="col-md-10 col-md-offset-1 list-container">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <h4>{{ $category->title }}</h4>
+                @if($category->status == true)
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1 list-container">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <h4>{{ $category->title }}</h4>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-8">
-                                <p>{{ $category->description }}</p>
-                            </div>
-                            <div class="col-md-4 pull-right">
-                                @if(Auth::user()->isLearned($category->id))
-                                    <form action="/results/{{ Auth::user()->id . '/' . $category->id }}" method="GET">
-                                        <input class="result-button" type="submit" class="btn btn-sm" value="VIEW RESULTS">
-                                    </form>
-                                @else
-                                    <form action="/lesson/{{ $category->id }}" method="GET">
-                                        <input class="learn-button" type="submit" class="btn btn-sm" value="LEARN">
-                                    </form>
-                                @endif
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p>{{ $category->description }}</p>
+                                </div>
+                                <div class="col-md-4 pull-right">
+                                    @if(Auth::user()->isLearned($category->id))
+                                        <form action="/results/{{ Auth::user()->id . '/' . $category->id }}" method="GET">
+                                            <input class="result-button" type="submit" class="btn btn-sm" value="VIEW RESULTS">
+                                        </form>
+                                    @else
+                                        <form action="/lesson/{{ $category->id }}" method="GET">
+                                            <input class="learn-button" type="submit" class="btn btn-sm" value="LEARN">
+                                        </form>
+                                    @endif
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endif
             @endforeach
             <div class="text-center">
                 {{ $categories->links() }}

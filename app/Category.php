@@ -33,4 +33,10 @@ class Category extends Model
     {
     	Lesson::where('category_id', $this->id)->delete();
     }
+
+    public function setStatusNotReady()
+    {
+    	$this->status = 0;
+    	$this->save();
+    }
 }

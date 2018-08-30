@@ -42,6 +42,8 @@ class ItemsController extends Controller
         $item->word = $request->itemWord;
         $item->save();
 
+        $item->category->setStatusNotReady();
+
         $correctAnswer = new Option;
         $correctAnswer->item_id = $item->id;
         $correctAnswer->word = $request->correctAnswer;
@@ -72,6 +74,7 @@ class ItemsController extends Controller
     {
         //
         $item = Item::find($id);
+        $item->category->setStatusNotReady();
         $item->word = $request->itemWord;
         $item->save();
 
@@ -104,10 +107,13 @@ class ItemsController extends Controller
     {
         //
         $item = Item::find($id);
-        $categoryId = $item->category_id;
+        $category = $item->category;
+        $category->setStatusNotReady();
+
         $item->deleteOptions();
+        $item->deleteLearnedWords();
         $item->delete();
 
-        return redirect('admin/category/'.$categoryId);
+        return redirect('admin/category/'.$category->id);
     }
 }

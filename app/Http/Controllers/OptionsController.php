@@ -41,6 +41,8 @@ class OptionsController extends Controller
         $option->word = $request->optionWord;
         $option->is_correct = 0;
         $option->save();
+
+        $option->item->category->setStatusNotReady();
         
         return redirect('/admin/item/'.$id);
     }
@@ -66,6 +68,7 @@ class OptionsController extends Controller
     {
         //
         $option = Option::find($id);
+        $option->item->category->setStatusNotReady();
         $option->word = $request->optionWord;
         $option->save();
 
@@ -94,6 +97,7 @@ class OptionsController extends Controller
     {
         //
         $option = Option::find($id);
+        $option->item->category->setStatusNotReady();
         $itemId = $option->item_id;
         $categoryId = $option->item->category_id;
         $location = "/admin";
@@ -101,6 +105,7 @@ class OptionsController extends Controller
         if($option->is_correct) {
             $item = $option->item;
             $item->deleteOptions();
+            $item->deleteLearnedWords();
             $item->delete();
             $location .= "/category/".$categoryId;
         }else {
