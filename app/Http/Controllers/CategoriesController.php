@@ -130,6 +130,6 @@ class CategoriesController extends Controller
             }
         }
 
-        return redirect('admin/category');        
+        return redirect()->back();       
     }
 }

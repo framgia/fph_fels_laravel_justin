@@ -20,14 +20,12 @@
             </thead>
             <tbody>
                 @foreach($learnedWords as $learnedWord)
-                    @if($learnedWord->lesson->category->status)
-                        <tr>
-                            <td>{{ $learnedWord->lesson->getCategoryTitle() }}</td>
-                            <td>{{ $learnedWord->getItemWord() }}</td>
-                            <td>{{ $learnedWord->getCorrectWord() }}</td>
-                            <td>{{ $learnedWord->user_answer }}</td>
-                        </tr>
-                    @endif
+                    <tr>
+                        <td>{{ $learnedWord->lesson->getCategoryTitle() }}</td>
+                        <td>{{ $learnedWord->getItemWord() }}</td>
+                        <td>{{ $learnedWord->getCorrectWord() }}</td>
+                        <td>{{ $learnedWord->user_answer }}</td>
+                    </tr>
                 @endforeach
             </tbody>
         </table>
