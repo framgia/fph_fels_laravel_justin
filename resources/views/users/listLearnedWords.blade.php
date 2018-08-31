@@ -30,10 +30,10 @@
                     @endif
                 @endforeach
             </tbody>
-            <div class="text-center">
-                {{ $learnedWords->links() }}
-            </div>
         </table>
+        <div class="text-center">
+            {{ $learnedWords->links() }}
+        </div>
     </div>
 </div>
 @endsection
