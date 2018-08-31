@@ -10,7 +10,7 @@ class DataManagementController extends Controller
     //
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(4);
 
     	return view('admin.listCategory', compact('categories'));
     }
