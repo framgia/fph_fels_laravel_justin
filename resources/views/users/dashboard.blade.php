@@ -12,7 +12,7 @@
                 <div class="col-md-8">     
                     <h4>{{ $user->name }}</h4>
                     <a href="/learnedwords/{{ Auth::user()->id }}">Learned {{ $user->totalLearnedWordsCount() }} Words</a><br/>
-                    <a href="#">Learned {{ $user->lessons()->count() }} Lessons</a>
+                    <a href="/learnedLessons/{{ Auth::user()->id }}">Learned {{ $user->lessons()->count() }} Lessons</a>
                 </div>
             </div>
 

@@ -17,9 +17,13 @@ class LessonsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         //
+        $user = User::find($id);
+        $lessons = Lesson::where('user_id', $id)->paginate(4);
+
+        return view('users.listLearnedLessons', compact('user', 'lessons'));
     }
 
     /**

@@ -40,8 +40,9 @@
                     @endif
                 </div>
             @endif
-             <div class="row text-center">
-                <a href="/learnedwords/{{ $user->id }}">Learned {{ $user->totalLearnedWordsCount() }} Words</a>
+            <div class="row text-center">
+                <a href="/learnedwords/{{ $user->id }}">Learned {{ $user->totalLearnedWordsCount() }} Words</a><br/>
+                <a href="/learnedLessons/{{ $user->id }}">Learned {{ $user->lessons()->count() }} Lessons</a>
             </div>
         </div>
          <div class="col-md-7 activities">

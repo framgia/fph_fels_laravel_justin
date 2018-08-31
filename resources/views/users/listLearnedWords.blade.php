@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-4 col-md-offset-2">
-        <h3>Words Learned by {{ $user->name }}</h3>
+    <div class="col-md-6 col-md-offset-2">
+        <h3>Words Learned by {{ (Auth::user()->id == $user->id) ? 'You' : $user->name }}</h3>
     </div>
 </div>
 

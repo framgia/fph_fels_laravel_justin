@@ -32,6 +32,7 @@ Route::get('lesson/{id}', 'LessonsController@startQuiz');
 Route::post('lesson/create', 'LessonsController@create');
 
 Route::get('learnedwords/{id}', 'LearnedWordsController@index');
+Route::get('learnedLessons/{id}', 'LessonsController@index');
 
 Route::get('edit/profile', 'UsersController@edit');
 Route::post('edit/profile', 'UsersController@update');
