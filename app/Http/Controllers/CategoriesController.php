@@ -53,7 +53,7 @@ class CategoriesController extends Controller
     public function show()
     {
         //
-        $categories = Category::orderBy('updated_at', 'desc')->paginate(4);
+        $categories = Category::where('status', true)->orderBy('updated_at', 'desc')->paginate(4);
 
         return view('categories.list', compact('categories'));
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Activity;
+use App\Lesson;
 
 class HomeController extends Controller
 {
@@ -33,7 +34,6 @@ class HomeController extends Controller
 
         $activities = Activity::orderBy('updated_at', 'desc')->whereIn('user_id', $connections)->paginate(4);
 
-        
         return view('users.dashboard', compact('user', 'activities'));
     }
 }
