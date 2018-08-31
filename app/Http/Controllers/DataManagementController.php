@@ -30,7 +30,7 @@ class DataManagementController extends Controller
 
     public function displayItems($id)
     {
-        $items = Item::where('category_id', $id)->get();
+        $items = Item::where('category_id', $id)->paginate(4);
 
     	return view('admin.listItem', compact('id', 'items'));
     }
